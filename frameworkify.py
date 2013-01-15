@@ -81,6 +81,7 @@ def frameworkify(executable, dylibs, nocopy, path):
 
     rewrites = []
     for dylib in dylibs:
+        dylib = os.path.realpath(dylib) # Follow symlinks, like libSDL2.dylib linking to SDL2-2.0.0.dylib
         dylib_name = os.path.basename(dylib)
         dylib_path_match = find_matching_dylib(baked_dylibs, dylib_name)
         if dylib_path_match is None:
